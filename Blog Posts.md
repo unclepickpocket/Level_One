@@ -1,4 +1,5 @@
-POST 1
+
+<h1>POST 1</h1>
 
 What is blockchain?
 Blockchain is essentially a datastore, it is a very safe datastore.Its public, its just like a database
@@ -28,7 +29,61 @@ Using metamask we are going to create public private keys
 We are going to create a node with hardhat, which is going to put everything come together. 
 “So letssssss get it STARTED in here”
 
-POST 2
+<h1>POST 2</h1>
+
+<h2>Environment Setup</h2>
+Here's the stuff we'll need
+NVM
+Node
+Hardhat
+MetaMask Wallet
+Set up NVM first for
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+
+Add the environment variables for accessing node commands.
+nvm install --lts
+
+<h2>Install MetaMask</h2>
+MetaMask will manage our wallet so that we can easily view our accounts and test our DApps easily. Go ahead and install MetaMask from https://metamask.io/. I'll use Firefox but you can just as well use Chrome.
+(I strongly suggest you use MetaMask for this tutorial so that you can follow along. There's a million wallets out there and it would be difficult to debug issues if you use something other than MetaMask.)
+Just go ahead and create an account on MetaMask, set your password and then save the recovery keys as given in the instructions.
+
+<h2>Setting up Hard hat</h2>
+In order to test out our smart contracts, we need an environment that simulates the ethereum network locally. We will later try out our smart contract on a global testnet too.
+First, set up a react app that we will use to interact with our environment.
+npx create-react-app react-dapp
+cd react-dapp 
+
+Now go ahead and set up hardhat along with all its dependencies. For now, let's not go into the details of what each part does and what alternatives are available. That would only slow you down and create confusion. It's best to get a hello world done and study options afterwards.
+npm install ethers hardhat @nomiclabs/hardhat-waffle \
+            ethereum-waffle chai \
+            @nomiclabs/hardhat-ethers
+
+Let's create basic hardhat configs and setup.
+npx hardhat 
+
+Accept all defaults. This will create a basic sample project for us.
+We need to edit the hardhat config file so that this works well with MetaMask. ChainId is a unique identifier for the blockchain.
+vi hardhat.config.js
+
+module.exports = {
+  solidity: "0.8.4",
+  paths: {                         // add this 
+    artifacts: './src/artifacts',  // this is where our compiled contracts will go
+  },
+  networks: {                      // and this ... 
+    hardhat: {
+      chainId: 1337                // this is needed for MetaMask
+    }
+  }
+};
+
+Start a node using:
+npx hardhat node 
+
+And try to connect to it using MetaMask.
+
+
 
 
 
